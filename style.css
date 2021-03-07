@@ -1,0 +1,622 @@
+/* || Allgemein*/
+:root {
+  --color-1: #FBC657; /* Gelb */
+  --color-2: #207C8A; /* Petrol */
+  --color-1-bg: #FEF5E3; /* Gelb-Hintergrund */
+  --color-2-bg: #ABCED3; /* Petrol-Hintergrund */
+  --color-1-tint: #FDE2AB; /* Gelb (blasser) */
+}
+
+* { margin: 0; padding: 0; border: none; box-sizing: border-box;}
+
+html {
+  /* scroll-snap-type: y proximity;
+  overflow-y: scroll;
+  scroll-behavior: smooth; */
+}
+
+
+/* || Typographie */
+
+body {
+  font-family: "bebas-neue-pro", sans-serif;
+  hyphens: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  text-decoration: underline;
+  text-decoration-color: var(--color-2);
+  font-family: 'Bebas Neue', cursive;
+}
+
+h2 {
+  font-family: 'Bebas Neue', cursive;
+}
+
+h1, h2 {
+  hyphens: none;
+}
+
+p {
+  text-align: justify;
+}
+
+#section1 h1 {
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+#section1 p {
+  padding: 0 10em;
+}
+
+.boxes>h2 {
+  font-size: 2rem;
+  padding: 0.2em 0.5em;
+}
+
+.boxes>p {
+  padding: 0.5em 1.5em;
+}
+
+#textbox>p {
+  font-size: 1.5rem;
+}
+
+#Kollektiv h1 {
+  text-decoration-color: var(--color-1);
+}
+
+#Kollektiv h2 {
+  font-family: "bebas-neue-pro", sans-serif;
+}
+
+#Kontakt p {
+  padding: 0
+}
+
+/* || Site-Wide */
+.sections {
+  min-height: 100vh;
+  display: flex;
+  scroll-snap-align: start;
+  padding-top: 7vh;
+  justify-content: center;
+}
+
+/* Flex-Container und Boxes */
+.flex-container {
+  width: 75%;
+  display: flex;
+  padding: 0.75em;
+  align-content: center;
+}
+
+.flex-container + .flex-container {
+  padding-top: 0;
+  margin-bottom: 2em;
+}
+
+.boxes {
+  flex: 1 1 40%;
+  min-height: 35vh;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-1);
+  transition: opacity 1s, width 1s, height 0.5s; linear;
+  position: relative;
+}
+
+.boxes + .boxes {
+  margin-left: 1.5em;
+}
+
+
+/* || Navigation*/
+header {
+  background-color: var(--color-2);
+  width: 100%;
+  height: 9vh;
+  z-index: 10;
+  font-family: 'Bebas Neue', cursive;
+  transition: height 0.5s ease-in;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 9vh;
+}
+
+.sticky .nav-link a {
+  font-size: 1.5em;
+}
+
+#nav-bar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#nav-list {
+  list-style-type: none;
+  display: flex;
+  padding: 0.4em 0em;
+}
+
+.nav-link {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+#middle-link {
+  flex: 0.5;
+}
+
+.nav-link:first-child {
+  justify-content: flex-end;
+}
+
+.nav-link:last-child {
+  justify-content: flex-start;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 3em;
+  margin-right: 3em;
+  hyphens: none;
+}
+
+.nav-link a:focus {
+  text-decoration: underline;
+}
+
+.nav-active a{
+  color: var(--color-1);
+}
+
+/* || Scrolldown-button */
+.scrolldown {
+  position: absolute;
+  bottom: 2.5em;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.scrolldown span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid var(--color-2);
+  border-right: 2px solid var(--color-2);
+  animation: animate 1.5s linear infinite;
+  opacity: 0;
+}
+
+.scrolldown span:nth-child(1) {
+  transform: translate(-0.6em, -0.6em);
+  animation-delay: -0.4s;
+}
+
+.scrolldown span:nth-child(2) {
+  transform: translate(0rem, 0rem);
+  animation-delay: -0.2s;
+}
+
+.scrolldown span:nth-child(3) {
+  transform: translate(0.6em, 0.6em);
+  animation-delay: -0s;
+}
+
+@keyframes animate {
+  0% {
+    top: -0.2em;
+    left: -0.2em;
+    opacity: 0;
+  }
+  25% {
+    top: 0em;
+    left: 0em;
+    opacity: 1;
+  }
+  50%, 100% {
+    top: 0.2em;
+    left: 0.2em;
+    opacity: 0;
+  }
+}
+
+/* || Section 1*/
+#section1 {
+  flex-direction: column;
+  padding-top: 0;
+  background-color: var(--color-1-bg);
+  scroll-snap-align: none;
+}
+
+.logo-container {
+  background-color: var(--color-1);
+  display: flex;
+  justify-content: center;
+}
+
+#logo {
+  height: 14vh;
+  margin: 0.25em auto;
+  padding: 0.3em 0;
+}
+
+.landingpage {
+  width: 100%;
+  min-height: 80vh;
+  background-image: url("./Bilder/desk1.jpg");
+  background-size: cover;
+  background-position: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+}
+
+/*Section 2*/
+
+#Angebot {
+  background-color: var(--color-1-bg);
+  display: flex;
+}
+
+#Angebot .flex-container {
+  flex-wrap: wrap;
+}
+
+#Angebot .boxes {
+  margin: 0.75em;
+  display: flex;
+  flex-direction: column;
+}
+
+#square4 {
+  background-color: var(--color-1-tint);
+}
+
+#Angebot .scrolldown {
+  transform: translateY(+100vh) translateX(-50%) rotate(45deg);
+  left: 5%;
+}
+
+#Angebot .scrolldown span {
+  border-bottom: 2px solid var(--color-1);
+  border-right: 2px solid var(--color-1);
+}
+
+/* || Buttons und Co */
+.btnmore {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1rem;
+  border: 0.2em solid var(--color-2);
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+  margin: auto 0.5em 0.5em 0.5em;
+  padding: 0.5em 1.5em;
+  cursor: pointer;
+  background-color: var(--color-1);
+  align-self: flex-end;
+}
+
+.btnmore:focus {
+  text-decoration: underline;
+}
+
+#square4 .btnmore {
+  background-color: var(--color-1-tint)
+}
+
+.invisible {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.hide {
+  display: none !important;
+}
+
+.active {
+  height: 70vh !important;
+  transition: height 1s ease-in;
+  font-size: 1.2rem;
+}
+
+.show-on-click {
+}
+
+/* Section 3 */
+#Kollektiv {
+  background-color: var(--color-2-bg);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#Kollektiv .boxes {
+  background-color: var(--color-2);
+}
+
+#aboutus1 {
+  flex-basis: 100%;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  align-items: center !important;
+  padding: 0 3em;
+  display: flex;
+  height: auto;
+}
+
+#aboutus2, #aboutus3, #aboutus4 {
+  flex-basis: 30%;
+  min-height: 40vh;
+}
+
+#aboutus2>p, #aboutus3>p, #aboutus4>p {
+  padding: 0.2em 1em 1em 1em;
+  text-align: justify;
+}
+
+.roundpic {
+  border-radius: 50%;
+  border: 0.2em solid var(--color-1);
+  height: 6em;
+  width: 6em;
+  overflow: hidden;
+  margin: 1em 1em 0.5em 1em;
+  background-color: white;
+  float: right;
+}
+
+.roundpic>img {
+  height: 100%;
+}
+
+#aboutus1>.roundpic {
+  min-width: 10em;
+  height: 10em;
+  background-color: var(--color-1);
+}
+
+#aboutus1>.roundpic>img {
+  height: 80%;
+  display: block;
+  margin: 0.6em auto 0.1em auto;
+}
+
+.descridiv {
+  margin-left: 0em;
+  padding: 1em;
+}
+
+.descridiv>h1 {
+  margin: 0;
+}
+
+#Kollektiv .scrolldown {
+  transform: translateY(+200vh) translateX(-50%) rotate(45deg);
+  left: 5%;
+}
+
+#Kollektiv .scrolldown span {
+  border-bottom: 2px solid var(--color-1);
+  border-right: 2px solid var(--color-1);
+}
+
+/* Section 4 */
+#Kontakt {
+  min-height: 94vh;
+  background-color: var(--color-1-bg);
+}
+
+#Kontakt .boxes {
+  height: 90%;
+  background-color: var(--color-1);
+  padding: 1.5em;
+}
+
+#Kontakt .flex-container {
+  margin-top: 2.5em;
+}
+
+#logoS4 {
+  height: 15vh;
+}
+
+#Kontakt .scrolldown {
+  transform: translateY(+230vh) translateX(-50%) rotate(225deg);
+  left: 95%;
+}
+
+#Kontakt .scrolldown span {
+  border-bottom: 2px solid var(--color-2);
+  border-right: 2px solid var(--color-2);
+}
+
+/* Footer */
+
+footer {
+  background-color: var(--color-2);
+  min-height: 4vh;
+  padding: 0.4em 2em;
+  scroll-snap-align: end;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+footer>a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  float: right;
+}
+
+/* || Impressum */
+#Impressum {
+  background-color: var(--color-1-bg);
+}
+
+#Impressum .boxes {
+  background-color: var(--color-1);
+  padding: 1.5em;
+}
+
+#Impressum .boxes p {
+  padding: 0 1em;
+}
+
+#Impressum ul {
+  padding: 0 2em;
+}
+
+#Impressum h1:last-of-type {
+  margin-top: 1em;
+}
+
+#Impressum h2 {
+  padding-top: 1em;
+}
+
+#Impressum h3 {
+  padding: 0.5em 1em;
+}
+
+/* || Media Queries */
+
+@media (min-width: 1500px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-height: 900px) {
+  html {
+    font-size: 24px;
+  }
+
+  #Kollektiv .flex-container {
+    width: 80%;
+  }
+
+  #aboutus1 {
+    padding: 0 1em;
+  }
+}
+
+@media (max-width: 1250px) {
+.flex-container {
+    width: 85%;
+  }
+}
+
+@media (max-width: 1100px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 950px) {
+  html {
+    font-size: 13px;
+  }
+
+  #section1 p {
+    padding: 0 5em;
+  }
+
+  #Kollektiv .flex-container:first-of-type {
+    width: 90%;
+  }
+
+  #aboutus1 {
+    padding: 0;
+  }
+}
+
+@media (orientation: portrait), (max-width: 750px;) {
+  .scrolldown {
+    display: none;
+  }
+
+  html {
+    width: 100vw;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+.boxes {
+  min-height: auto;
+}
+
+  #textbox>p {
+    font-size: 1.2rem;
+  }
+
+  #section1 p {
+    padding: 0 1em;
+  }
+
+  #logo {
+    height: 10vh;
+  }
+
+  .nav-link a {
+    margin: 0 0.3em;
+  }
+
+  /* .sticky .nav-link a {
+    font-size: inherit;
+  } */
+
+  #textbox {
+    width: 80%
+  }
+
+  #Angebot .flex-container {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  #Kollektiv .flex-container {
+    flex-direction: column;
+  }
+
+  #aboutus1 {
+    flex-direction: column;
+    padding: 0 0;
+  }
+
+  #Kollektiv .boxes {
+    margin: 1em 0;
+    min-height: auto;
+  }
+}
+
+/* ToDo
+Scrolldown Animation
+fix padding usw.
+
+logo einfügen oben links auf section 2 und section 4
+animation top-logo
+header opacity on scroll
+formatierung ändern für aktives nav-element
+center nav-bar
+*/
