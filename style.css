@@ -49,6 +49,7 @@ p {
 
 #section1 p {
   padding: 0 10em;
+  font-weight: bold;
 }
 
 .boxes>h2 {
@@ -267,6 +268,11 @@ header {
   flex-direction: column;
   justify-content: flex-start;
   align-items:center;
+}
+
+#welcomeText2 {
+  opacity: 0;
+  transition: opacity 2.5s;
 }
 
 /*Section 2*/

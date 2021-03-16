@@ -10,15 +10,31 @@ const square3 = document.querySelector("#square3")
 const square3Btn = square3.querySelector(".btnmore")
 const square4 = document.querySelector("#square4")
 const square4Btn = square4.querySelector(".btnmore")
-var header = document.getElementById("header");
-var sticky = header.offsetTop;
-var Angebot = document.getElementById("Angebot");
-var s2position = Angebot.offsetTop;
-var Kollektiv = document.getElementById("Kollektiv");
-var s3position = Kollektiv.offsetTop;
-var Kontakt = document.getElementById("Kontakt");
-var s4position = Kontakt.offsetTop;
-var viewHeigth = window.innerHeight;
+
+//Header Variables
+const header = document.getElementById("header");
+const sticky = header.offsetTop;
+const headerHeight = header.offsetHeight;
+
+// Section Variables
+const section1 = document.getElementById("section1");
+const sec1Height = section1.offsetHeight;
+const angebot = document.getElementById("Angebot");
+const sec2Height = angebot.offsetHeight;
+const kollektiv = document.getElementById("Kollektiv");
+const sec3Height = kollektiv.offsetHeight;
+const kontakt = document.getElementById("Kontakt");
+const sec4Height = kontakt.offsetHeight;
+
+const sec2Start = sec1Height - headerHeight;
+const sec3Start = sec1Height + sec2Height - headerHeight;
+const sec4Start = sec1Height + sec2Height + sec3Height - headerHeight;
+
+const viewHeigth = window.innerHeight;
+const navEl1 = header.querySelectorAll(".nav-link")[0]
+const navEl2 = header.querySelectorAll(".nav-link")[1]
+const navEl3 = header.querySelectorAll(".nav-link")[2]
+const navEl1Link = navEl1.firstChild
 
 
 // Functions
@@ -39,6 +55,9 @@ function expandDiv(elem) {
     elem.querySelector(".btnmore").innerHTML = "<span>Mehr erfahren</span>"
     elem.querySelector(".show-on-click").classList.toggle("hide")
   } else {
+    document.getElementById('Angebot').scrollIntoView({
+      behavior: 'smooth'
+    });
     setTimeout(function() {elem.classList.toggle("active"); }, 500)
     setTimeout(function() {elem.querySelector(".btnmore").innerHTML = "<span>Zurück zur Übersicht</span>"; }, 500)
     setTimeout(function() {elem.querySelector(".show-on-click").classList.toggle("hide"); }, 500)
@@ -57,43 +76,67 @@ function hideSiblings(elem) {
     return siblings;
 }
 
+// Hide Active Divs on Click
+function closeActiveDivs() {
+  let activeDiv = document.querySelector('.active')
+  if (activeDiv != null) {
+  hideSiblings(activeDiv)
+  }
+}
+
 // fix header
 function fixHeader() {
   if (window.pageYOffset > sticky) {
     header.classList.add("sticky");
-    const navElement1 = header.querySelectorAll(".nav-link")[0]
-    const navElement2 = header.querySelectorAll(".nav-link")[1]
-    const navElement3 = header.querySelectorAll(".nav-link")[2]
-    console.log("pageYOffset " + pageYOffset);
-    console.log("s3position " + s3position);
-    console.log("s4position " + s4position);
-    console.log("viewHeigth " + viewHeigth);
-    if (window.pageYOffset > (s4position - (viewHeigth*1.5))) {
-      navElement1.classList.remove("nav-active")
-      navElement2.classList.remove("nav-active")
-      navElement3.classList.add("nav-active")
-    } else if (window.pageYOffset > (s3position - (viewHeigth))) {
-      navElement1.classList.remove("nav-active")
-      navElement2.classList.add("nav-active")
-      navElement3.classList.remove("nav-active")
-    } else if (window.pageYOffset > (s2position - (viewHeigth*0.5))) {
-      navElement1.classList.add("nav-active")
-      navElement2.classList.remove("nav-active")
-      navElement3.classList.remove("nav-active")
-    } else {
-      navElement1.classList.remove("nav-active")
-      navElement2.classList.remove("nav-active")
-      navElement3.classList.remove("nav-active")
-    }
   } else {
     header.classList.remove("sticky");
   }
 }
 
-window.onscroll = function() {fixHeader()};
+function animateNav () {
+    if (window.pageYOffset < (sec2Start - (viewHeigth*0.3))) {
+    navEl1.classList.remove("nav-active");
+    navEl2.classList.remove("nav-active");
+    navEl3.classList.remove("nav-active");
+  } else if (window.pageYOffset < (sec3Start - (viewHeigth*0.3))) {
+    navEl1.classList.add("nav-active");
+    navEl2.classList.remove("nav-active");
+    navEl3.classList.remove("nav-active");
+  } else if (window.pageYOffset < (sec4Start - (viewHeigth*0.5))) {
+    navEl1.classList.remove("nav-active");
+    navEl2.classList.add("nav-active");
+    navEl3.classList.remove("nav-active");
+  }  else if (window.pageYOffset >= (sec4Start - (viewHeigth*1.9))) {
+    navEl1.classList.remove("nav-active");
+    navEl2.classList.remove("nav-active");
+    navEl3.classList.add("nav-active");
+  }
+}
+
+// Print WelcomeText
+function printLetterByLetter(destination, message, speed){
+    var i = 0;
+    var interval = setInterval(function(){
+        document.getElementById(destination).innerHTML += message.charAt(i);
+        i++;
+        if (i > message.length){
+            clearInterval(interval);
+        }
+    }, speed);
+}
+
+function showWelcomeText2() {
+  setTimeout(function() {document.getElementById("welcomeText2").style.opacity = "1"; }, 5000)
+}
 
 
 // Event Listeners
+window.onload = function() {printLetterByLetter("welcomeText1", "Was steckt hinter Like-Button, Chatbot und Co.? Wie verändern soziale Medien die Meinungsbildung in der Demokratie? Kann KI die Welt retten? Und wie kann ich mich im digitalen Raum politisch einbringen und die Welt mitgestalten?", 15); showWelcomeText2()}
+
+
+
+window.onscroll = function() {fixHeader(); animateNav()};
+
 square1Btn.addEventListener('click', function(){
   hideSiblings(square1)
 });
@@ -106,3 +149,7 @@ square3Btn.addEventListener('click', function(){
 square4Btn.addEventListener('click', function(){
   hideSiblings(square4)
 });
+
+navEl1Link.addEventListener('click', function(){
+  closeActiveDivs()
+})
